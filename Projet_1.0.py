@@ -7,4 +7,4 @@ class Dog:                          # Création d'une classe Dog
         return self.name
     
 Fido = Dog ('Fido')                 # Créer l'objet Fido                 
-print (Fido.get_name())     
+print (Fido.get_name())             # new comment 
