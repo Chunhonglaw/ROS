@@ -7,3 +7,8 @@ essai sur meme fichier
 
 fonction master
 ajout code ici
+
+
+
+fonction:
+bug1
