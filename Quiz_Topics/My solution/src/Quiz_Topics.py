@@ -1,18 +1,3 @@
-
-class Dog:                          # Création d'une classe Dog
-    def __init__(self, name):       
-        self.name = name
-
-    def get_name (self):            # méthode get_name
-        return self.name
-    
-Fido = Dog ('Fido')                 # Créer l'objet Fido     
-Happy = Dog ('Happy')            
-print (Fido.get_name())             # new comment 
-print (Happy.get_name())            # new comment 
-
-print ('Try push to Github')
-print ('sur branch test')
 #! /usr/bin/env python
 #https://get-help.robotigniteacademy.com/t/trouble-with-ros-basics-in-5-days-topic-quiz/742
 
@@ -41,21 +26,43 @@ class MoveRobot:
 
     def get_right_laser(self):
         time.sleep(1)
-        return self.laser_msg.ranges[0]  
+        return self.laser_msg.ranges[100]  
+
+    def get_left_laser(self):
+        time.sleep(1)
+        return self.laser_msg.ranges[460]
+
+    def turn_left(self):
+        self.move.linear.x = self.speed/4
+        self.move.angular.z = self.speed*2    
+        
+    def turn_right(self):
+        self.move.linear.x = self.speed/4
+        self.move.angular.z = -self.speed*2
+
+    def forward(self):
+        self.move.linear.x = self.speed
+        self.move.angular.z = 0       
 
     def avoid_wall(self):
         while not rospy.is_shutdown():
             #Calculte move setting
-            if self.get_front_laser() > 1 and self.get_right_laser() > 1:
+            if self.get_front_laser() > 1:
                 # move forward               
-                self.move.linear.x = self.speed
-                self.move.angular.z = 0
+                self.forward()
             
-            else: 
+            elif self.get_front_laser() < 1: 
                 #turn left
-                self.move.linear.x = 0
-                self.move.angular.z = self.speed
+                self.turn_left()
             
+            elif self.get_right_laser() < 1: 
+                #turn left
+                self.turn_left()  
+           
+            elif self.self.get_left_laser() > 1: 
+                #turn right
+                self.turn_right()
+
             #publish move
             self.pub.publish(self.move)
             #sleep
