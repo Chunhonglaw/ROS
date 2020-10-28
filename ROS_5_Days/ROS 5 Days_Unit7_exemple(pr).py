@@ -1,4 +1,5 @@
 # Exemple de code d'un package service concu en OOP
+# Ce code ne peut pas etre compiler, j'ai résumé tous les codes des fichiers et des launch de différent dossier 
 
 # -----------------------------------------------------------------------------------
 # -----------------------------------------------------------------------------------
