@@ -1,5 +1,6 @@
 x=input("Enter number1: ")
 y=input("Enter number2: ")
+
 try:
     z = int(x) / int(y)
 except ZeroDivisionError as e:
